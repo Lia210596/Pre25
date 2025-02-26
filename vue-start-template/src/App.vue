@@ -1,8 +1,14 @@
-<template>
-  <div class="container mt-3 p-4 bg-danger text-white rounded text-center">
-    <h1>Vue.js Demo App <i class="bi bi-hand-thumbs-up-fill"></i></h1>
-  </div>
-</template>
-
-<script>
+<script setup>
+import { RouterLink, RouterView } from 'vue-router'
+import TheHeader from './components/TheHeader.vue';
+import TheNavbar from './components/TheNavbar.vue';
 </script>
+
+<template>
+  <header>
+    <TheNavbar />
+    <TheHeader />
+  </header>
+
+  <RouterView />
+</template>

@@ -1,0 +1,6 @@
+/* main.css */
+body {
+    background-color: #e8e8e8 !important; /* Ensures the background color is applied */
+    margin: 0; /* Optional: Remove default margin */
+    font-family: Arial, sans-serif; /* Optional: Set a default font */
+}
