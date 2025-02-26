@@ -4,7 +4,7 @@
             
             <!-- Logo links -->
             <RouterLink class="navbar-brand me-2" to="/">
-                <img src="https://your-logo-url.com/logo.png" alt="Logo" class="logo" />
+                <img src="../assets/Logo_Vertikal.jpg" alt="Logo" class="logo" />
             </RouterLink>
 
             <!-- Hamburger Menü für About Us & Country -->
@@ -92,7 +92,7 @@ const searchQuery = ref('');
 <style>
 /* Logo-Styling */
 .logo {
-    height: 40px;
+    height: 80px;
 }
 
 /* Navbar Link Farben */
