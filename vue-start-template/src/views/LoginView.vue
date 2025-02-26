@@ -1,82 +1,116 @@
 <template>
-    <div class="flex items-center justify-center min-h-screen bg-blue-600">
-        <div class="bg-white p-8 rounded-2xl shadow-lg w-96">
-            <h2 class="text-3xl font-bold text-center text-gray-800">Anmelden</h2>
-            <p class="text-gray-600 text-center mb-6">Willkommen zurück! Bitte logge dich ein.</p>
+    <div class="container">
+        <div class="login-card">
+            <h2>Login</h2>
+            <form @submit.prevent="handleSubmit">
+                <label for="username">Username</label>
+                <input type="text" v-model="username" id="username" required />
 
-            <form @submit.prevent="handleLogin">
-                <div class="mb-4">
-                    <label class="block text-gray-700 font-medium">E-Mail</label>
+                <label for="password">Passwort</label>
+                <div class="password-input">
                     <input 
-                        v-model="email" 
-                        type="email" 
-                        required 
-                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" 
-                        placeholder="Deine E-Mail" 
-                    />
-                </div>
-
-                <div class="mb-4">
-                    <label class="block text-gray-700 font-medium">Passwort</label>
-                    <input 
+                        :type="showPassword ? 'text' : 'password'" 
                         v-model="password" 
-                        type="password" 
+                        id="password" 
                         required 
-                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" 
-                        placeholder="••••••••" 
                     />
+                    <span @click="togglePasswordVisibility" class="eye-icon">
+                        {{ showPassword ? '🙈' : '👁️' }} <!-- Einfachere Unicode-Augen -->
+                    </span>
                 </div>
 
-                <button 
-                    type="submit" 
-                    class="w-full bg-blue-700 text-white py-2 rounded-lg hover:bg-blue-800 transition duration-200"
-                >
-                    Einloggen
-                </button>
+                <button type="submit">Login</button>
             </form>
-
-            <p class="text-gray-500 text-sm text-center mt-4">
-                Noch kein Konto? 
-                <RouterLink to="/register" class="text-blue-600 hover:underline">Jetzt registrieren</RouterLink>
-            </p>
         </div>
     </div>
 </template>
 
-<script setup>
-import { ref } from 'vue';
-
-const email = ref('');
-const password = ref('');
-
-const handleLogin = () => {
-    // Logik zum Verarbeiten des Logins (z. B. API-Aufruf)
-    console.log('E-Mail:', email.value);
-    console.log('Passwort:', password.value);
-    // Hier kannst du die Logik zum Verarbeiten des Logins hinzufügen
+<script>
+export default {
+    data() {
+        return {
+            username: '',
+            password: '',
+            showPassword: false, // Flag für die Sichtbarkeit des Passworts
+        };
+    },
+    methods: {
+        handleSubmit() {
+            // Hier kannst du die Login-Logik implementieren
+            console.log('Benutzername:', this.username);
+            console.log('Passwort:', this.password);
+        },
+        togglePasswordVisibility() {
+            this.showPassword = !this.showPassword; // Toggle der Passwortsichtbarkeit
+        },
+    },
 };
 </script>
 
 <style scoped>
-/* Hintergrundfarbe der Card */
-.bg-white {
-    background-color: #ffffff;
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
 }
 
-/* Karte Schatten */
-.shadow-lg {
-    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #e8e8e8; /* Hintergrundfarbe der Seite */
 }
 
-/* Übergang für den Button */
-.transition {
-    transition: background-color 0.2s;
+.login-card {
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    width: 300px; /* Optionale feste Breite für die Card */
 }
 
-/* Border Farbe und Radius für die Eingabefelder */
-.border-gray-300 {
-    border-color: #d1d5db;
+.login-card h2 {
+    margin-bottom: 20px;
 }
 
-/* Bei Bedarf weitere Styles hier hinzufügen */
+.login-card label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.login-card input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: white; /* Setze die Hintergrundfarbe auf Weiß */
+    color: #333; /* Setze die Textfarbe auf dunkelgrau */
+}
+
+.password-input {
+    position: relative; /* Notwendig für das Positionieren des Augensymbols */
+}
+
+.eye-icon {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: black; /* Farbe des Augensymbols */
+    font-size: 20px; /* Größe des Augensymbols */
+}
+
+.login-card button {
+    width: 100%;
+    padding: 10px;
+    background-color: #0f2741; /* Blau */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.login-card button:hover {
+    background-color: #0c1e30; /* Dunkleres Blau beim Hover */
+}
 </style>

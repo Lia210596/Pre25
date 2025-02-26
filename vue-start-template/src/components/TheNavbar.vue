@@ -18,75 +18,68 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                <ul v-if="menuOpen" class="dropdown-menu show">
-                    <li><RouterLink class="dropdown-item" to="/about">About Us</RouterLink></li>
-                    <li><RouterLink class="dropdown-item" to="/country">Country</RouterLink></li>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <RouterLink class="nav-link text-light" to="/home">Home</RouterLink>
+                    </li>
+
+
+                    <li class="nav-item dropdown position-relative">
+                        <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Projects <span class="badge bg-primary">3</span>
+                        </a>
+                        <ul class="dropdown-menu position-absolute start-0" aria-labelledby="navbarDropdown">
+                            <li>
+                                <RouterLink class="dropdown-item" to="/">
+                                    bsp1 <span class="badge bg-secondary"></span>
+                                </RouterLink>
+                            </li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li>
+                                <RouterLink class="dropdown-item" to="/aboutus">
+                                    About us <span class="badge bg-secondary"></span>
+                                </RouterLink>
+                            </li>
+                        </ul>
+                    </li>
                 </ul>
-            </div>
 
-            <!-- Suchfeld & Profilbild (rechts angepinnt) -->
-            <div class="d-flex align-items-center ms-auto">
-                <input
-                    class="form-control me-3"
-                    type="search"
-                    placeholder="Search..."
-                    v-model="searchQuery"
-                    aria-label="Search"
-                />
+                <!-- Suchfeld & Profilicon (rechts angepinnt) -->
+                <div class="ms-auto d-flex align-items-center gap-2">
+                    <input type="text" placeholder="Search" class="form-control w-32 sm:w-auto" />
 
-                <!-- Profil Dropdown Menü -->
-                <div class="dropdown">
-                    <img 
-                        src="https://primefaces.org/cdn/primevue/images/avatar/amyelsner.png" 
-                        alt="User" 
-                        class="profile-img" 
-                        @click="toggleProfileMenu"
-                    />
-
-                    <ul v-if="profileMenuOpen" class="dropdown-menu dropdown-menu-end show">
-                        <li><RouterLink class="dropdown-item" to="/login">Login</RouterLink></li>
-                        <li><RouterLink class="dropdown-item" to="/register">Registrieren</RouterLink></li>
-                    </ul>
+                    <!-- Profil-Icon Dropdown -->
+                    <div class="dropdown">
+                        <a class="d-flex align-items-center" id="profileDropdown" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg" class="rounded-circle" style="color: white;">
+                                <path
+                                    d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-4.41 0-8 3.59-8 8h16c0-4.41-3.59-8-8-8z"
+                                    fill="currentColor" />
+                            </svg>
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="profileDropdown">
+                            <li>
+                                <RouterLink class="dropdown-item fs-4" to="/login">Login</RouterLink>
+                            </li>
+                            <li>
+                                <RouterLink class="dropdown-item fs-4" to="/register">Registrieren</RouterLink>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
-
         </div>
     </nav>
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue';
-
-// Hamburger-Menü für About Us & Country
-const menuOpen = ref(false);
-const toggleMenu = () => {
-    menuOpen.value = !menuOpen.value;
-};
-
-// Profil-Menü (Login/Registrieren)
-const profileMenuOpen = ref(false);
-const toggleProfileMenu = () => {
-    profileMenuOpen.value = !profileMenuOpen.value;
-};
-
-// Menü schließen, wenn außerhalb geklickt wird
-const closeMenus = (event) => {
-    if (!event.target.closest('.dropdown')) {
-        menuOpen.value = false;
-        profileMenuOpen.value = false;
-    }
-};
-
-onMounted(() => {
-    document.addEventListener('click', closeMenus);
-});
-
-onUnmounted(() => {
-    document.removeEventListener('click', closeMenus);
-});
-
-// Suchfeld
-const searchQuery = ref('');
+import { ref } from "vue";
 </script>
 
 <style>
@@ -98,48 +91,40 @@ const searchQuery = ref('');
 /* Navbar Link Farben */
 .nav-link {
     color: #ffffff;
+    /* Weiße Textfarbe für Links */
 }
 
-.nav-link:hover {
-    color: #a5c3e3;
+.navbar-light .navbar-nav .nav-link:hover {
+    color: #007bff;
+    /* Farbe beim Hover-Effekt */
 }
 
-/* Suchfeld */
-.form-control {
-    width: 200px;
-}
-
-/* Profilbild */
-.profile-img {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    cursor: pointer;
-}
-
-/* Hamburger Icon Styling */
-.navbar-toggler {
-    border: none;
-}
-
-.navbar-toggler-icon {
-    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255, 255, 255, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
-}
-
-/* Dropdown Menü Styling */
 .dropdown-menu {
     background-color: #0f2741;
-    border: none;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    /* Dunkelblauer Hintergrund für Dropdown */
+    transform: translateX(-100%);
+    /* Verschiebt das Menü nach links */
+    transition: transform 0.3s ease;
+    /* Sanfter Übergang */
+}
+
+.dropdown-menu.show {
+    transform: translateX(0);
+    /* Zeigt das Dropdown an */
 }
 
 .dropdown-item {
-    color: white;
-    font-size: 16px;
+    color: #ffffff;
+    /* Weiße Textfarbe für Dropdown-Items */
 }
 
 .dropdown-item:hover {
-    background-color: #1b3a5b;
-    color: #a5c3e3;
+    background-color: #0056b3;
+    /* Dunklerer Farbton beim Hover */
+}
+
+.badge {
+    margin-left: 5px;
+    /* Abstand für die Badge */
 }
 </style>

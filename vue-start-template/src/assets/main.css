@@ -1,6 +1,16 @@
-/* main.css */
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;400;700&display=swap');
+
 body {
-    background-color: #e8e8e8 !important; /* Ensures the background color is applied */
-    margin: 0; /* Optional: Remove default margin */
-    font-family: Arial, sans-serif; /* Optional: Set a default font */
+    background-color: #e8e8e8 !important; /* Setzt die Hintergrundfarbe */
+    margin: 0; /* Entfernt den Standardmargin */
+    font-family: 'Roboto Slab', serif; /* Setzt Roboto Slab als Schriftart für den gesamten Text */
+}
+
+* {
+    box-sizing: border-box; /* Stellt sicher, dass Padding und Border in der Gesamtbreite enthalten sind */
+}
+
+h1, h2, h3, p {
+    color: #333; /* Dunkelgraue Standardfarbe für den Text */
+    line-height: 1.6; /* Zeilenhöhe für bessere Lesbarkeit */
 }
