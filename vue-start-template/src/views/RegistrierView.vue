@@ -1,10 +1,10 @@
 <template>
     <div class="flex items-center justify-center min-h-screen bg-blue-600">
         <div class="bg-white p-8 rounded-2xl shadow-lg w-96">
-            <h2 class="text-3xl font-bold text-center text-gray-800">Anmelden</h2>
-            <p class="text-gray-600 text-center mb-6">Willkommen zurück! Bitte logge dich ein.</p>
+            <h2 class="text-3xl font-bold text-center text-gray-800">Registrieren</h2>
+            <p class="text-gray-600 text-center mb-6">Erstelle ein neues Konto.</p>
 
-            <form @submit.prevent="handleLogin">
+            <form @submit.prevent="handleRegister">
                 <div class="mb-4">
                     <label class="block text-gray-700 font-medium">E-Mail</label>
                     <input 
@@ -27,17 +27,28 @@
                     />
                 </div>
 
+                <div class="mb-4">
+                    <label class="block text-gray-700 font-medium">Passwort bestätigen</label>
+                    <input 
+                        v-model="confirmPassword" 
+                        type="password" 
+                        required 
+                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" 
+                        placeholder="••••••••" 
+                    />
+                </div>
+
                 <button 
                     type="submit" 
                     class="w-full bg-blue-700 text-white py-2 rounded-lg hover:bg-blue-800 transition duration-200"
                 >
-                    Einloggen
+                    Registrieren
                 </button>
             </form>
 
             <p class="text-gray-500 text-sm text-center mt-4">
-                Noch kein Konto? 
-                <RouterLink to="/register" class="text-blue-600 hover:underline">Jetzt registrieren</RouterLink>
+                Bereits registriert? 
+                <RouterLink to="/login" class="text-blue-600 hover:underline">Jetzt einloggen</RouterLink>
             </p>
         </div>
     </div>
@@ -48,12 +59,17 @@ import { ref } from 'vue';
 
 const email = ref('');
 const password = ref('');
+const confirmPassword = ref('');
 
-const handleLogin = () => {
-    // Logik zum Verarbeiten des Logins (z. B. API-Aufruf)
+const handleRegister = () => {
+    if (password.value !== confirmPassword.value) {
+        alert("Die Passwörter stimmen nicht überein!");
+        return;
+    }
+    // Logik zur Verarbeitung der Registrierung (z. B. API-Aufruf)
     console.log('E-Mail:', email.value);
     console.log('Passwort:', password.value);
-    // Hier kannst du die Logik zum Verarbeiten des Logins hinzufügen
+    // Hier kannst du die Logik zum Verarbeiten der Registrierung hinzufügen
 };
 </script>
 
