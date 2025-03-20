@@ -3,7 +3,7 @@
         <div class="container-fluid d-flex align-items-center">
             
             <!-- Logo links -->
-            <RouterLink class="navbar-brand me-2" to="/">
+            <RouterLink class="navbar-brand me-2" to="/home">
                 <img src="../assets/Logo_Vertikal.jpg" alt="Logo" class="logo" />
             </RouterLink>
 
@@ -32,7 +32,7 @@
                         </a>
                         <ul class="dropdown-menu position-absolute start-0" aria-labelledby="navbarDropdown">
                             <li>
-                                <RouterLink class="dropdown-item" to="/">
+                                <RouterLink class="dropdown-item" to="/bsp1">
                                     bsp1 <span class="badge bg-secondary"></span>
                                 </RouterLink>
                             </li>
